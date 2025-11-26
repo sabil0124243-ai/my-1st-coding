@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>ALLOO IT'S MY FIRST CODING ✨</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #ffe3ec, #e6f0ff);
+        overflow-x: hidden;
+        text-align: center;
+    }
+
+    /* floating hearts */
+    .heart {
+        position: fixed;
+        color: #ff7b9c;
+        font-size: 20px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+        from { transform: translateY(100vh) scale(1); opacity: 1; }
+        to   { transform: translateY(-10vh) scale(1.8); opacity: 0; }
+    }
+
+    #container {
+        margin-top: 80px;
+        background: #ffffffcc;
+        width: 85%;
+        max-width: 450px;
+        padding: 30px;
+        border-radius: 25px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    button {
+        padding: 12px 25px;
+        border: none;
+        background: #7aa2ff;
+        color: white;
+        font-size: 16px;
+        border-radius: 12px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+    }
+
+    button:hover { background: #5e86e9; }
+
+</style>
+</head>
+
+<body>
+
+<!-- background music -->
+<audio id="bgm" autoplay loop>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Komiku/Mischief/Komiku_-_03_-_Friends.mp3" type="audio/mp3">
+</audio>
+
+<div id="container">
+    <h2 id="question">Hai… aku mau nanya sesuatu ✨</h2>
+
+    <div id="buttons">
+        <button onclick="nextQ('yes')">Lanjut</button>
+    </div>
+</div>
+
+<script>
+// Questions list (aesthetic & non-jamet)
+const questions = [
+    "Hari ini perasaannya gimana? ✨",
+    "Kamu tau ga? Kamu tuh keren banget udah ngelewatin hari-hari yang darr derr dorr ini 😌",
+    "Kamu lebih suka ayam geprek atau ayam goreng biasa?",
+    "Kalau aku tiba-tiba bilang aku bangga sama kamu, kamu percaya?",
+    "Kamu tipe yang suka perhatian kecil atau kejutan besar?",
+    "Menurut kamu, hal kecil apa yang bikin kamu nyaman sama aku?",
+    "Kamu sadar ga, kamu itu pengaruh banget buat mood aku?",
+    "Kalau aku bilang aku sayang kamu hari ini, jawabannya apa? 💗"
+];
+
+let index = 0;
+
+function nextQ() {
+    index++;
+    if (index < questions.length) {
+        document.getElementById("question").innerText = questions[index];
+    } else {
+        document.getElementById("container").innerHTML = `
+            <h2>Akhirnya selesai ✨</h2>
+            <p>Makasih udah jawab semuanya…
+            <br>aku cuma mau bilang…</p>
+            <h2 style="margin-top:15px;color:#ff709d;">Aku sayang kamu 🫶</h2>
+        `;
+    }
+}
+
+// floating hearts generator
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerText = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+setInterval(createHeart, 700);
+</script>
+
+</body>
+</html>
